@@ -12,9 +12,9 @@ public class Shell : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision collision)
     {
-        if (other.tag == "Car")
+        if (collision.gameObject.tag == "Car")
         {
             Destroy(gameObject);
         }

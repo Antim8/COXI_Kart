@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
-    private Collider m_ObjectCollider;
+    
     private float speed = 1.0f;
     private int itemNum = 0;
     private Rigidbody rb;
@@ -15,8 +15,8 @@ public class Car : MonoBehaviour
     void Start()
     {
         transform.position = new Vector3(0, 0.5f, 0);
-        m_ObjectCollider = GetComponent<Collider>();
-        m_ObjectCollider.isTrigger = true;
+        
+        
     }
 
     // Update is called once per frame
@@ -26,7 +26,7 @@ public class Car : MonoBehaviour
         MoveCar();
 
         SpeedDecrease();
-        //m_ObjectCollider.isTrigger = true;
+        
 
         if (itemNum != 0)
         {
@@ -34,7 +34,9 @@ public class Car : MonoBehaviour
             {
                 if (itemNum == 1)
                 {
-                    Instantiate(_shellPrefab, transform.position, this.transform.rotation);
+                    // get position in front of the car 
+                    Vector3 position = transform.position + transform.forward * 1.5f;
+                    Instantiate(_shellPrefab, position, this.transform.rotation);
                     itemNum = 0;
                 }
                 
@@ -79,25 +81,29 @@ public class Car : MonoBehaviour
                 transform.Rotate(Vector3.up * Time.deltaTime * 100);
             }
     }
-
+  
     void OnCollisionEnter(Collision collision)
     {
-    
-    
         
-    }   
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.name == "Boost")
-        {
-            // Speed up the car
-            speed += 3f;
-        }
 
-        if (other.tag == "Shell")
+        if (collision.gameObject.tag == "Shell")
         {
             // Delete game object
             itemNum = 1;
         }
+        if (collision.gameObject.tag == "Shell_Shot")
+        {
+            // Destroy game object
+            Destroy(collision.gameObject);
+        }
     }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Boost")
+        {
+            // Speed up the car
+            speed += 3f;
+        }
+    }
+    
 }
