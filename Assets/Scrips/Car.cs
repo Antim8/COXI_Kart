@@ -15,6 +15,7 @@ public class Car : MonoBehaviour
     void Start()
     {
         transform.position = new Vector3(0, 0.5f, 0);
+        rb = GetComponent<Rigidbody>();
         
         
     }
@@ -27,7 +28,6 @@ public class Car : MonoBehaviour
 
         SpeedDecrease();
         
-
         if (itemNum != 0)
         {
             if (Input.GetKey(KeyCode.Space))
@@ -93,8 +93,11 @@ public class Car : MonoBehaviour
         }
         if (collision.gameObject.tag == "Shell_Shot")
         {
+            //rb.isKinematic = true;
             // Destroy game object
+            //Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
             Destroy(collision.gameObject);
+            rb.velocity = Vector3.zero;
         }
     }
     void OnTriggerEnter(Collider other)
