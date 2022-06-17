@@ -9,7 +9,7 @@ public class Boost : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(20, 0, 20);
+        //transform.position = new Vector3(20, 0, 20);
         up = true;
     }
 
