@@ -61,24 +61,24 @@ public class Car : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             transform.Translate(Vector3.forward * Time.deltaTime * 5f * speed);
-            RotateCar();
+            RotateCar(1);
         }
         if (Input.GetKey(KeyCode.S))
         {
             transform.Translate(Vector3.back * Time.deltaTime * 3f * speed);
-            RotateCar();
+            RotateCar(-1);
         }
     }
 
-    void RotateCar()
+    void RotateCar(int direction)
     {
         if (Input.GetKey(KeyCode.A))
             {
-                transform.Rotate(Vector3.down * Time.deltaTime * 100);
+                transform.Rotate(Vector3.down * Time.deltaTime * 100 * direction);
             }
         if (Input.GetKey(KeyCode.D))
             {
-                transform.Rotate(Vector3.up * Time.deltaTime * 100);
+                transform.Rotate(Vector3.up * Time.deltaTime * 100 * direction);
             }
     }
   
