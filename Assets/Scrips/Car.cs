@@ -14,7 +14,8 @@ public class Car : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(0, 0.5f, 0);
+        transform.position = new Vector3(-3.0f, 16.0f, 15.0f);
+        transform.rotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
         rb = GetComponent<Rigidbody>();
         
         

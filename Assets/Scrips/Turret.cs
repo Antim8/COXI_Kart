@@ -45,5 +45,5 @@ public class Turret : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-    }`
+    }
 }
