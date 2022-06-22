@@ -51,7 +51,7 @@ public class Car : MonoBehaviour
     {
         if (speed > 1.0f)
         {
-            speed -= 0.05f;
+            speed -= 0.01f;
         }
     }
 
