@@ -8,7 +8,7 @@ public class CarController : MonoBehaviour
     private Vector3 MoveForce;
 
     private float MoveAcceleration = 100;
-    private float Drag = 0.99f;
+    private float Drag = 0.993f;
     private float MaxSpeed = 50;
     private float SteerAngle = 20;
     private float Traction = .5f;
