@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Car : MonoBehaviour
 {
@@ -14,8 +15,27 @@ public class Car : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(-3.0f, 16.0f, 15.0f);
-        transform.rotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            transform.position = new Vector3(80.0f, 16.0f, -100.0f);
+            transform.rotation = Quaternion.Euler(0.0f, -90.0f, 0.0f);
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            transform.position = new Vector3(100.0f, 16.0f, -100.0f);
+            transform.rotation = Quaternion.Euler(0.0f, -90.0f, 0.0f);
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            transform.position = new Vector3(190.0f, 16.0f, 0.0f);
+            transform.rotation = Quaternion.Euler(0.0f, -90.0f, 0.0f);
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            transform.position = new Vector3(120.0f, 16.0f, -120.0f);
+            transform.rotation = Quaternion.Euler(0.0f, -45.0f, 0.0f);
+        }
+        
         rb = GetComponent<Rigidbody>();
         
         
@@ -61,7 +81,7 @@ public class Car : MonoBehaviour
         // Control the car 
         if (Input.GetKey(KeyCode.W))
         {
-            transform.Translate(Vector3.forward * Time.deltaTime * 5f * speed);
+            transform.Translate(Vector3.forward * Time.deltaTime * 20f * speed);
             RotateCar(1);
         }
         if (Input.GetKey(KeyCode.S))
@@ -107,6 +127,20 @@ public class Car : MonoBehaviour
         {
             // Speed up the car
             speed += 3f;
+        }
+        else if(other.tag == "Teleporter")
+        {
+           SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+        }
+        else if(other.tag == "JumpPack")
+        {
+            // Jump the car
+            rb.AddForce(Vector3.up * 20f, ForceMode.Impulse);
+        }
+        else if(other.tag == "JumpPackHigh")
+        {
+            // Jump the car
+            rb.AddForce(Vector3.up * 40f, ForceMode.Impulse);
         }
     }
     
