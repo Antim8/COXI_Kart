@@ -12,6 +12,7 @@ public class Boost : MonoBehaviour
     {
         // get y position
         y_pos = transform.position.y;
+        //transform.position = new Vector3(20, 0, 20);
         up = true;
     }
 
