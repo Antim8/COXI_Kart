@@ -72,3 +72,5 @@ crashlytics-build.properties
 
 .vscode/.DS_Store
 .collabignore
+.DS_Store
+.vscode/
