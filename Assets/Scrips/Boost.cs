@@ -6,9 +6,12 @@ public class Boost : MonoBehaviour
 {
 
     private bool up;
+    private float y_pos;
     // Start is called before the first frame update
     void Start()
     {
+        // get y position
+        y_pos = transform.position.y;
         //transform.position = new Vector3(20, 0, 20);
         up = true;
     }
@@ -16,11 +19,11 @@ public class Boost : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y < 1.0f)
+        if (transform.position.y < (y_pos + 1.0f))
         {
             up = true;
         }
-        if (transform.position.y > 1.5f)
+        if (transform.position.y > (y_pos + 1.5f))
         {
             up = false;
         }
