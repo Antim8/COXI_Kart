@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class RaceCarFunMap : MonoBehaviour
+public class RaceCarV2_FunTrack : MonoBehaviour
 {
-    public static RaceCarFunMap Instance { get; private set; }
+    public static RaceCarV2_FunTrack Instance { get; private set; }
     public Transform centerOfMass;
     public float motorTorque = 1500f;
     public float maxSteer = 20f;
@@ -18,8 +18,6 @@ public class RaceCarFunMap : MonoBehaviour
     private Rigidbody _rb;
     private Wheel[] _wheels;
     private bool _allowed;
-    public GameObject beacon;
-    
 
     // Start is called before the first frame update
     void Start()
@@ -31,10 +29,6 @@ public class RaceCarFunMap : MonoBehaviour
         _wheels = GetComponentsInChildren<Wheel>();
         _rb = GetComponent<Rigidbody>();
         _rb.centerOfMass = centerOfMass.localPosition;
-        StartCoroutine(WaitForStart(3));
-        StartCoroutine(WaitForCamera(1));
-
-
     }
 
     // Update is called once per frame
@@ -51,26 +45,6 @@ public class RaceCarFunMap : MonoBehaviour
         }
     }
 
-    private IEnumerator WaitForStart(int secs)
-    {
-        yield return new WaitForSeconds(secs);
-        _allowed = true;
-        StartCoroutine(WeHereBeacon(3));
-    }
-    
-    private IEnumerator WaitForCamera(int secs)
-    {
-        yield return new WaitForSeconds(secs);
-    }
-
-    private IEnumerator WeHereBeacon(int secs)
-    {
-        beacon.SetActive(true);
-        yield return new WaitForSeconds(secs);
-        beacon.SetActive(false);
-        
-    }
-
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Boost")
@@ -85,7 +59,7 @@ public class RaceCarFunMap : MonoBehaviour
         {
             Finished = true;
         }
-
+        
     }
     void OnCollisionEnter(Collision collision)
     {
