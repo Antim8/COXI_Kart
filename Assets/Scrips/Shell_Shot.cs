@@ -11,7 +11,7 @@ public class Shell_Shot : MonoBehaviour
     {
         
         rb = GetComponent<Rigidbody>();
-        rb.velocity = 20 * transform.forward;
+        rb.velocity = 60 * transform.forward;
         
     }
     // Update is called once per frame
