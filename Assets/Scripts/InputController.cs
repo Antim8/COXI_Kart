@@ -14,9 +14,9 @@ public class InputController : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    public void BackToMainMenu()
     {
-        
+        SceneManager.LoadScene("MainMenu");
     }
 
     // Update is called once per frame
@@ -24,7 +24,7 @@ public class InputController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            RaceCarV2.Instance.ResetPosition();
+            RaceCarV2_RaceTrack.Instance.ResetPosition();
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
