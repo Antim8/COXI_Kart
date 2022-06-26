@@ -2,7 +2,7 @@
 ### Welcome to the most realistic Arcade Racer of 2022 (At least if you yourself are a polygon of 6 edges)!
 <img src="/pictures/FinalCOXI.png" alt="Coxi Map" width="500"/>
 This is a somewhat 3D Racer with rainbow special effects and an extra dose of Coxi.
-You can experience the glorious amount of two hand created maps with teleporters, speed-boosts and turrets that will mostlikely bully you!
+You can experience the glorious amount of three hand created maps with teleporters, speed-boosts and turrets that will mostlikely bully you!
 (One of which is in kinda beta mode because of the time it takes to create the objects in Blender). 
 
 
