@@ -76,6 +76,8 @@ After having the car up and running we built our Platypus Highway (The Coxi circ
 First we tried to model it in Unity but it doesn't even look half as nice as if done in Blender. And so we began the journey of building a racetrack in Blender by using modular pieces and putting them together to get our letter-tracks. Since that is really time consuming we only did it for our two main tracks. The third track (Mayhem Drive) is still kind of in beta mode and therefore only modelled in Unity to first get the functionality right. More on that later.
 We then imported the tracks into Unity, lined them up, tweaked the scales, added our car, teleporters, a finding beacon a number of UI elements to know what to do and a pinch of pepper and salt, et voila Track rdy to be played. (Kind of sounds easier than it felt like).
 
+<img src="/pictures/CoxiComparison.jpg" alt="Coxi Maps" width="500"/>
+
 Next to that we created our Main Menu inspired by the tutorial of gamesplusjames, mentionned at the top.
 We mainly used his font throughout the entire game and used his particle system to create our own stylish ones.
 
