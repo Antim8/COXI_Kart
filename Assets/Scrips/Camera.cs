@@ -8,7 +8,9 @@ public class Camera : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        // Get the gameobject related to the car
         GameObject car = GameObject.Find("Car");
+        // Get the car's position 
         Vector3 carPosition = car.transform.position;
 
         // Set the position of the camera to the position of the car

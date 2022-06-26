@@ -9,7 +9,7 @@ public class Shell_Shot : MonoBehaviour
 
     void Start()
     {
-        
+        // Get the rigidbody component and set the default velocity
         rb = GetComponent<Rigidbody>();
         rb.velocity = 60 * transform.forward;
         
@@ -17,6 +17,7 @@ public class Shell_Shot : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // update the current velocity value
         velocity = rb.velocity;
 
         // Destroy the shell after 5 seconds
@@ -24,9 +25,9 @@ public class Shell_Shot : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
+        // Reflect the movement's velocity at the point of contact 
         ContactPoint contact = collision.contacts[0];
         rb.velocity = Vector3.Reflect(velocity, contact.normal);
-
     }
 
     

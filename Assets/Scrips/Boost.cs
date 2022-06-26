@@ -12,22 +12,25 @@ public class Boost : MonoBehaviour
     {
         // get y position
         y_pos = transform.position.y;
-        //transform.position = new Vector3(20, 0, 20);
+        // set the initial movement up
         up = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Set up true if below lower limit
         if (transform.position.y < (y_pos + 1.0f))
         {
             up = true;
         }
+        // Set up false if above upper limit
         if (transform.position.y > (y_pos + 1.5f))
         {
             up = false;
         }
-
+        
+        // Move up and down
         if (up)
         {
             transform.Translate(Vector3.up * Time.deltaTime * 0.5f);

@@ -4,16 +4,9 @@ using UnityEngine;
 
 public class Shell : MonoBehaviour
 {
-    // Update is called once per frame
-    void Update()
-    {
-
-
-        
-    }
-
     void OnCollisionEnter(Collision collision)
     {
+        // By collision with the car object destroy
         if (collision.gameObject.tag == "Car")
         {
             Destroy(gameObject);

@@ -47,8 +47,10 @@ public class Car : MonoBehaviour
         // Movement of the car
         MoveCar();
 
+        // Decrease the boost after awhile
         SpeedDecrease();
         
+        // Pick the Shell up and release it by pressing the space bar
         if (itemNum != 0)
         {
             if (Input.GetKey(KeyCode.Space))
@@ -70,6 +72,7 @@ public class Car : MonoBehaviour
     }
     void SpeedDecrease()
     {
+        // Reduce the speed boost each iteration
         if (speed > 1.0f)
         {
             speed -= 0.01f;
@@ -93,6 +96,7 @@ public class Car : MonoBehaviour
 
     void RotateCar(int direction)
     {
+        // Set the rotation of the car when steering the car
         if (Input.GetKey(KeyCode.A))
             {
                 transform.Rotate(Vector3.down * Time.deltaTime * 100 * direction);
@@ -114,9 +118,7 @@ public class Car : MonoBehaviour
         }
         if (collision.gameObject.tag == "Shell_Shot")
         {
-            //rb.isKinematic = true;
-            // Destroy game object
-            //Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
+            // Destroy the shell projectile and set the car's velocity to zero
             Destroy(collision.gameObject);
             rb.velocity = Vector3.zero;
         }
@@ -130,7 +132,8 @@ public class Car : MonoBehaviour
         }
         else if(other.tag == "Teleporter")
         {
-           SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+            // Change the current scene to the next 
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
         }
         else if(other.tag == "JumpPack")
         {
