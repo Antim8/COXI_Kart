@@ -37,4 +37,29 @@ public class RaceCarV2 : MonoBehaviour
             wheel.Torque = Throttle * motorTorque;
         }
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.name == "TeleporterC")
+        {
+            transform.position = new Vector3(31.0f,30.0f,-608.0f);
+            transform.rotation = Quaternion.Euler(0.0f, -90.0f, 0.0f);
+        }
+        else if (other.name == "TeleporterO")
+        {
+            transform.position = new Vector3(83.0f,67.0f,-154.5f);
+            transform.rotation = Quaternion.Euler(0.0f, 45.0f, 0.0f);
+        }
+        else if (other.name == "TeleporterX_1")
+        {
+            transform.position = new Vector3(79.0f,33.0f,-213.5f);
+            transform.rotation = Quaternion.Euler(0.0f, -45.0f, 0.0f);
+        }
+        else if (other.name == "TeleporterX_2")
+        {
+            transform.position = new Vector3(100.5f,23.5f,344.5f);
+            transform.rotation = Quaternion.Euler(0.0f, -45.0f, 0.0f);
+        }
+
+    }
 }
