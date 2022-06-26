@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InputController : MonoBehaviour
 {
@@ -21,6 +22,15 @@ public class InputController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RaceCarV2.Instance.ResetPosition();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
         SteerInput = Input.GetAxis(inputSteerAxis);
         ThrottleInput = Input.GetAxis(inputPowerAxis);
     }
