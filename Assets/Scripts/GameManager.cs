@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
+    // "Singleton like" structure to prevent from getting to many Managers
     public static GameManager Instance { get; private set; }
     public InputController InputController { get; private set; }
 
@@ -13,10 +14,5 @@ public class GameManager : MonoBehaviour
         Instance = this;
         InputController = GetComponentInChildren<InputController>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

@@ -9,6 +9,7 @@ public class CameraFollow : MonoBehaviour
     public Transform target;
     public Vector3 offset;
     public Vector3 eulerRotation;
+    // The damper is to make the transition smoother
     public float damper;
 
     // Start is called before the first frame update

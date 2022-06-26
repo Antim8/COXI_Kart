@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class Car : MonoBehaviour
 {
     
-    private float speed = 1.0f;
-    private int itemNum = 0;
-    private Rigidbody rb;
+    private float _speed = 1.0f;
+    private int _itemNum = 0;
+    private Rigidbody _rb;
     [SerializeField]
     private GameObject _shellPrefab;
      
@@ -36,7 +36,7 @@ public class Car : MonoBehaviour
             transform.rotation = Quaternion.Euler(0.0f, -45.0f, 0.0f);
         }
         
-        rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
         
         
     }
@@ -51,16 +51,16 @@ public class Car : MonoBehaviour
         SpeedDecrease();
         
         // Pick the Shell up and release it by pressing the space bar
-        if (itemNum != 0)
+        if (_itemNum != 0)
         {
             if (Input.GetKey(KeyCode.Space))
             {
-                if (itemNum == 1)
+                if (_itemNum == 1)
                 {
                     // get position in front of the car 
                     Vector3 position = transform.position + transform.forward * 1.5f;
                     Instantiate(_shellPrefab, position, this.transform.rotation);
-                    itemNum = 0;
+                    _itemNum = 0;
                 }
                 
 
@@ -73,9 +73,9 @@ public class Car : MonoBehaviour
     void SpeedDecrease()
     {
         // Reduce the speed boost each iteration
-        if (speed > 1.0f)
+        if (_speed > 1.0f)
         {
-            speed -= 0.01f;
+            _speed -= 0.01f;
         }
     }
 
@@ -84,12 +84,12 @@ public class Car : MonoBehaviour
         // Control the car 
         if (Input.GetKey(KeyCode.W))
         {
-            transform.Translate(Vector3.forward * Time.deltaTime * 20f * speed);
+            transform.Translate(Vector3.forward * Time.deltaTime * 20f * _speed);
             RotateCar(1);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            transform.Translate(Vector3.back * Time.deltaTime * 3f * speed);
+            transform.Translate(Vector3.back * Time.deltaTime * 3f * _speed);
             RotateCar(-1);
         }
     }
@@ -114,13 +114,13 @@ public class Car : MonoBehaviour
         if (collision.gameObject.tag == "Shell")
         {
             // Delete game object
-            itemNum = 1;
+            _itemNum = 1;
         }
         if (collision.gameObject.tag == "Shell_Shot")
         {
             // Destroy the shell projectile and set the car's velocity to zero
             Destroy(collision.gameObject);
-            rb.velocity = Vector3.zero;
+            _rb.velocity = Vector3.zero;
         }
     }
     void OnTriggerEnter(Collider other)
@@ -128,7 +128,7 @@ public class Car : MonoBehaviour
         if (other.tag == "Boost")
         {
             // Speed up the car
-            speed += 3f;
+            _speed += 3f;
         }
         else if(other.tag == "Teleporter")
         {
@@ -138,12 +138,12 @@ public class Car : MonoBehaviour
         else if(other.tag == "JumpPack")
         {
             // Jump the car
-            rb.AddForce(Vector3.up * 20f, ForceMode.Impulse);
+            _rb.AddForce(Vector3.up * 20f, ForceMode.Impulse);
         }
         else if(other.tag == "JumpPackHigh")
         {
             // Jump the car
-            rb.AddForce(Vector3.up * 40f, ForceMode.Impulse);
+            _rb.AddForce(Vector3.up * 40f, ForceMode.Impulse);
         }
     }
     

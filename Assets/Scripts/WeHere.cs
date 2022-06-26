@@ -17,6 +17,7 @@ public class WeHere : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Up and down Movement
         if (this.gameObject.activeSelf == true)
         {
             if (transform.position.y < (_yPos -20.0f))

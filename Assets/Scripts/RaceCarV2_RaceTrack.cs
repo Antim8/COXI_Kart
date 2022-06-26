@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
 
+// Specific Version for the RaceTrack / HillBilly Road
 public class RaceCarV2_RaceTrack : MonoBehaviour
 {
     public static RaceCarV2_RaceTrack Instance { get; private set; }

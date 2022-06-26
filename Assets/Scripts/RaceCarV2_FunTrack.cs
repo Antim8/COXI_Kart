@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+// Specific version for the Beta Track/ Mayhem Drive
 public class RaceCarV2_FunTrack : MonoBehaviour
 {
     public static RaceCarV2_FunTrack Instance { get; private set; }

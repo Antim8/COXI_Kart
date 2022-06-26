@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+// Base for every car instance we are using; slightly changed in the specific scripts
 public class RaceCarV2 : MonoBehaviour
 {
+    
     public static RaceCarV2 Instance { get; private set; }
     public Transform centerOfMass;
     public float motorTorque = 1500f;
@@ -41,7 +43,11 @@ public class RaceCarV2 : MonoBehaviour
         Map = 0;
         _wheels = GetComponentsInChildren<Wheel>();
         _rb = GetComponent<Rigidbody>();
+        
+        // Change the center of mass so that the car doesn't roll over that much
         _rb.centerOfMass = centerOfMass.localPosition;
+        
+        // These Coroutines are to prevent from doing something while the game loads or shows around
         StartCoroutine(WaitForStart(3));
         StartCoroutine(WaitForCamera(1));
 
@@ -54,7 +60,8 @@ public class RaceCarV2 : MonoBehaviour
         if (Map <= 0 && _allowed == true) return;
         Steer = GameManager.Instance.InputController.SteerInput;
         Throttle = GameManager.Instance.InputController.ThrottleInput;
-
+        
+        // Applying the force to every wheel that is eligible 
         foreach (var wheel in _wheels)
         {
             wheel.SteerAngle = Steer * maxSteer;
@@ -62,6 +69,7 @@ public class RaceCarV2 : MonoBehaviour
         }
     }
 
+    // Waiter Threads
     private IEnumerator WaitForStart(int secs)
     {
         yield return new WaitForSeconds(secs);
@@ -75,6 +83,7 @@ public class RaceCarV2 : MonoBehaviour
         Map = 1;
     }
 
+    // Thread to spawn Beacon over the car after every teleport
     private IEnumerator WeHereBeacon(int secs)
     {
         beacon.SetActive(true);
@@ -83,6 +92,7 @@ public class RaceCarV2 : MonoBehaviour
         
     }
 
+    // To reset position to last checkpoint; also used for teleporting
     public void ResetPosition()
     {
         if (Map == 0) return;
@@ -94,6 +104,8 @@ public class RaceCarV2 : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        
+        // To see which teleporter has been activated
         switch (other.name)
         {
             case "TeleporterC":
@@ -117,24 +129,8 @@ public class RaceCarV2 : MonoBehaviour
                 Map = 0;
                 break;
         }
-        if (other.tag == "Boost")
-        {
-            _rb.AddForce(transform.forward * 1000f, ForceMode.Acceleration);
-        }
-        else
-        {
-            ResetPosition();
-            StartCoroutine(WeHereBeacon(3));
-        }
-    }
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "World")
-        {
-            transform.position = new Vector3(193.0f,6.0f,85.0f);
-            transform.rotation = Quaternion.Euler(0, 180, 0);
-            _rb.velocity = Vector3.zero;
-            _rb.angularVelocity = Vector3.zero;
-        }
+        ResetPosition();
+        StartCoroutine(WeHereBeacon(3));
+        
     }
 }

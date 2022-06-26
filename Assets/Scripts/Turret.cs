@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    private float frequency = 1.0f;
+    private float _frequency = 1.0f;
     [SerializeField]
     private GameObject _shellPrefab;
 
@@ -22,7 +22,7 @@ public class Turret : MonoBehaviour
         if (Physics.Raycast(transform.position, carDirection, out hit, 10.0f))
         {
             // Always instantiate after a certain time
-            if (frequency == 1.0f)
+            if (_frequency == 1.0f)
             {
                 // Create the shell object and release it towards the car
                 Instantiate(_shellPrefab, transform.position + transform.forward * 1.5f, transform.rotation);
@@ -30,10 +30,10 @@ public class Turret : MonoBehaviour
             }
         }
         // Reduce the the frequency variable until zero and than set it to 1 again
-        frequency -= 0.02f;
-        if (frequency < 0.0f)
+        _frequency -= 0.02f;
+        if (_frequency < 0.0f)
         {
-            frequency = 1.0f;
+            _frequency = 1.0f;
         }
     
     }

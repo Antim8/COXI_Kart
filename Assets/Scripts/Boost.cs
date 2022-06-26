@@ -1,37 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Boost : MonoBehaviour
 {
 
-    private bool up;
-    private float y_pos;
+    private bool _up;
+    private float _yPos;
     // Start is called before the first frame update
     void Start()
     {
         // get y position
-        y_pos = transform.position.y;
+        _yPos = transform.position.y;
         // set the initial movement up
-        up = true;
+        _up = true;
     }
 
     // Update is called once per frame
     void Update()
     {
         // Set up true if below lower limit
-        if (transform.position.y < (y_pos + 1.0f))
+        if (transform.position.y < (_yPos + 1.0f))
         {
-            up = true;
+            _up = true;
         }
         // Set up false if above upper limit
-        if (transform.position.y > (y_pos + 1.5f))
+        if (transform.position.y > (_yPos + 1.5f))
         {
-            up = false;
+            _up = false;
         }
         
         // Move up and down
-        if (up)
+        if (_up)
         {
             transform.Translate(Vector3.up * Time.deltaTime * 0.5f);
         }
