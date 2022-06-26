@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class LevelSelection : MonoBehaviour
 {
 
-    public string firstLevel, secondLevel;
+    public string firstLevel, secondLevel, thirdLevel;
     
    public void LoadCoxiMap()
     {
@@ -24,5 +24,10 @@ public class LevelSelection : MonoBehaviour
     public void HeadBack()
     {
         this.gameObject.SetActive(false);
+    }
+
+    public void LoadHillBilly()
+    {
+        SceneManager.LoadScene(thirdLevel);
     }
 }
