@@ -26,6 +26,7 @@ public class OptionsScreen : MonoBehaviour
         
     }
 
+    // This is to make the changes visible and reload
     public void ApplyGraphics()
     {
         var res = resolution.captionText.text;

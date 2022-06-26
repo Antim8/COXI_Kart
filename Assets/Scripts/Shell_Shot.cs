@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class Shell_Shot : MonoBehaviour
 {
-    private Rigidbody rb;
-    private Vector3 velocity;
+    private Rigidbody _rb;
+    private Vector3 _velocity;
 
     void Start()
     {
         // Get the rigidbody component and set the default velocity
-        rb = GetComponent<Rigidbody>();
-        rb.velocity = 60 * transform.forward;
+        _rb = GetComponent<Rigidbody>();
+        _rb.velocity = 60 * transform.forward;
         
     }
     // Update is called once per frame
     void FixedUpdate()
     {
         // update the current velocity value
-        velocity = rb.velocity;
+        _velocity = _rb.velocity;
 
         // Destroy the shell after 5 seconds
         Destroy(this.gameObject, 5);
@@ -27,7 +27,7 @@ public class Shell_Shot : MonoBehaviour
     {
         // Reflect the movement's velocity at the point of contact 
         ContactPoint contact = collision.contacts[0];
-        rb.velocity = Vector3.Reflect(velocity, contact.normal);
+        _rb.velocity = Vector3.Reflect(_velocity, contact.normal);
     }
 
     

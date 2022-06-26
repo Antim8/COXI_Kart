@@ -24,7 +24,10 @@ public class InputController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            RaceCarV2_RaceTrack.Instance.ResetPosition();
+            if (RaceCarV2_RaceTrack.Instance != null) 
+                RaceCarV2_RaceTrack.Instance.ResetPosition();
+            else if (RaceCarV2.Instance != null)
+                RaceCarV2.Instance.ResetPosition();
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))

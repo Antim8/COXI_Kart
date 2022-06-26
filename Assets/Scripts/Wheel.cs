@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Wheel : MonoBehaviour
 {
-
+    // Each wheel has the possibility to steer, get power or ivertsteer
     public bool steer;
     public bool invertSteer;
     public bool power;
@@ -31,6 +31,7 @@ public class Wheel : MonoBehaviour
         wheelTransform.rotation = rot;
     }
 
+    // Apply steer and torque where necessary
     void FixedUpdate()
     {
         if (steer) {
